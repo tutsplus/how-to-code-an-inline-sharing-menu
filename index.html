@@ -10,18 +10,13 @@
     <meta property="og:url" content="https://tfirdaus.github.io/inline-sharing-button/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Inline Sharing Buttons" />
-    <meta property="og:description" content="Show inline sharing button after user highlighted " />
+    <meta property="og:description" content="Show inline sharing button on top of highlighted text" />
     <meta property="og:image" content="https://tfirdaus.github.io/inline-sharing-button/images/office-4.jpg" />
     <meta property="fb:app_id" content="101402859970084" />
 
     <title>Inline Sharing Button</title>
 
     <link rel="stylesheet" href="css/style.css">
-    <script>
-        window.tuts = {
-            quote : ''
-        }
-    </script>
 </head>
 <body>
     <div id="fb-root"></div>
@@ -120,8 +115,7 @@
              setTimeout( showBubble, 30 );
         } );
 
-        // Facebook.
-        document.getElementById( 'share' ).onclick = function( event ) {
+        document.getElementById( 'share' ).addEventListener( 'click', function() {
 
             var highlight = getHighlight();
 
@@ -135,21 +129,24 @@
             }
 
             event.preventDefault();
-        }
+        } );
 
         // Tweet.
-        document.getElementById( 'tweet' ).onclick  = function( event ) {
+        document.getElementById( 'tweet' ).addEventListener( 'click', function() {
 
             var highlight = getHighlight();
 
             if ( highlight.text !== '' && highlight.parent.nodeName === 'P' ) {
-                var tweetURL = 'https://twitter.com/intent/tweet?via=wdtuts&url=' + encodeURIComponent( window.location.href ) + '&text=' + encodeURIComponent( highlight.text );
+
+                var docURL = encodeURIComponent( window.location.href );
+                var tweetText = encodeURIComponent( highlight.text );
+                var tweetURL = 'https://twitter.com/intent/tweet?via=wdtuts&url=' + docURL + '&text=' + tweetText;
+
                 openShareWindow( tweetURL, 600, 420 );
             }
 
             event.preventDefault();
-            
-        }
+        } );
 
     </script>
 </body>
