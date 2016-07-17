@@ -95,10 +95,6 @@ mark {
 }
 .tooltip {
   position: absolute;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
   opacity: 0;
   -webkit-transform: translateY(10px);
           transform: translateY(10px);
@@ -107,7 +103,7 @@ mark {
   transition: transform 0.2s;
   transition: transform 0.2s, -webkit-transform 0.2s;
 }
-.tooltip__btn {
+.tooltip button {
   background-color: #000;
   border-radius: 0;
   border: 0;
@@ -116,16 +112,26 @@ mark {
   padding: 10px 16px;
   cursor: pointer;
   outline: 0;
-  position: relative;
-  z-index: 1;
   font-size: 14px;
   -webkit-transition: background-color 0.2s;
   transition: background-color 0.2s;
+  margin: 0;
 }
-.tooltip__btn:hover,
-.tooltip__btn:focus,
-.tooltip__btn:active {
+.tooltip button:hover,
+.tooltip button:focus,
+.tooltip button:active {
   background-color: #007bff;
+}
+.tooltip__buttons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #000;
+  overflow: hidden;
+  border-radius: 3px;
+  z-index: 10;
+  position: relative;
 }
 .tooltip__triangle {
   background-color: #000;
@@ -141,12 +147,4 @@ mark {
   opacity: 1;
   -webkit-transform: translateY(0);
           transform: translateY(0);
-}
-#share {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-#tweet {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
 }

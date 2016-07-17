@@ -39,10 +39,12 @@
         <p>By embedding videos we request more than just a video file. A number of resources are fetched, including JavaScript files, a stylesheet, images, and advertisements. And as you can from the screenshot below, two Youtube videos equates to 22 HTTP requests with a total of 624kb downloaded. These numbers will climb as we embed more videos on the page.</p>
     </div>
     <div id="share-bubble" class="tooltip">
-            <button id="share" class="tooltip__btn">Share</button>
-            <button id="tweet" class="tooltip__btn">Tweet</button>
-            <span class="tooltip__triangle"></span>
+        <div class="tooltip__buttons">
+            <button id="share">Share</button>
+            <button id="tweet">Tweet</button>
         </div>
+        <span class="tooltip__triangle"></span>
+    </div>
 
     <script>
 
