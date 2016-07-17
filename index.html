@@ -111,10 +111,12 @@
             bubble.style.top  = ( highlight.rect.top - 40 ) + "px";
         }
 
+        // Upon releasing mouse button.
         document.body.addEventListener( 'mouseup', function() {
              setTimeout( showBubble, 30 );
         } );
 
+        // Facebook.
         document.getElementById( 'share' ).addEventListener( 'click', function() {
 
             var highlight = getHighlight();
