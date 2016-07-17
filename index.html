@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="initial-scale=1">
+    <meta name="description" content="Lazy load image with blurry effect as seen on Medium">
+
+    <meta property="og:url" content="http://tfirdaus.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inline Sharing Buttons" />
+    <meta property="og:description" content="Show inline sharing button after user highlighted " />
+    <meta property="og:image" content="http://tfirdaus.github.io/inline-sharing-button/images/city-2.jpg" />
+
+    <title>Inline Sharing Button</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        window.tuts = {
+            quote : ''
+        }
+    </script>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=101402859970084";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+	<header class="site-header cf">
+        <h1>Inline Sharing Button</h1>
+        <a href="#">Read Tutorial</a>
+    </header>
+
+    <div id="content" class="demo-content">
+        <p>Embedding a Youtube video has become a completely normal process for anyone involved with the web; copy, paste, done. However, pulling in an external resource like a Youtube video may slow down a web page’s load performance, especially if there are two or more videos embedded on the same page.</p>
+
+        <p>By embedding videos we request more than just a video file. A number of resources are fetched, including JavaScript files, a stylesheet, images, and advertisements. And as you can from the screenshot below, two Youtube videos equates to 22 HTTP requests with a total of 624kb downloaded. These numbers will climb as we embed more videos on the page.</p>
+    </div>
+    <div id="share-bubble" class="tooltip">
+            <button id="share" class="tooltip__btn">Share</button>
+            <button id="tweet" class="tooltip__btn">Tweet</button>
+            <span class="tooltip__triangle"></span>
+        </div>
+
+    <script>
+
+        var bubble = document.getElementById( 'share-bubble' );
+
+        function openShareWindow( url, w, h ) {
+
+            var screenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
+            var screenTop = window.screenTop !== undefined ? window.screenTop : screen.top;
+            var width = window.innerWidth ? window.innerWidth : doc.documentElement.clientWidth ? doc.documentElement.clientWidth : screen.width;
+            var height = window.innerHeight ? window.innerHeight : doc.documentElement.clientHeight ? doc.documentElement.clientHeight : screen.height;
+
+            var left = ( ( width / 2 ) - ( w / 2 ) ) + screenLeft;
+            var top = ( ( height / 2 ) - ( h / 2 ) ) + screenTop;
+
+            var newWin = window.open( url, "", "scrollbars=no,width=" + w + ",height=" + h + ",top=" + top + ",left=" + left );
+
+            if ( newWin ) {
+                newWin.focus();
+            }
+
+        }
+
+        function getHighlight() {
+
+            var selection = window.getSelection();
+
+            var object = {
+                parent : null,
+                text   : '',
+                rect : null
+            };
+
+            if ( selection.rangeCount > 0 ) {
+                object = {
+                    parent : selection.anchorNode.parentNode,
+                    text   : selection.toString(),
+                    rect   : selection.getRangeAt(0).getBoundingClientRect()
+                };
+            }
+
+            return object;
+        }
+
+        function showBubble() {
+
+            var highlight = getHighlight();
+
+            if ( highlight.text === '' ) {
+
+                bubble.setAttribute( 'class', 'tooltip' );
+                bubble.style.left = 0;
+                bubble.style.top  = 0;
+
+                return;
+            }
+
+            if ( highlight.parent.nodeName !== 'P' ) {
+                return;
+            }
+
+            var width = ( highlight.rect.width / 2 ) - 70;
+
+            bubble.setAttribute( 'class', 'tooltip tooltip--shown' );
+            bubble.style.left = ( highlight.rect.left + width ) + "px";
+            bubble.style.top  = ( highlight.rect.top - 40 ) + "px";
+        }
+
+        document.body.addEventListener( 'mouseup', function() {
+             setTimeout( showBubble, 30 );
+        } );
+
+        // Facebook.
+        document.getElementById( 'share' ).onclick = function( event ) {
+
+            var highlight = getHighlight();
+
+            if ( highlight.text !== '' && highlight.parent.nodeName === 'P' ) {
+                FB.ui({
+                    method : 'share',
+                    href   : window.location.href,
+                    quote  : highlight.text
+                });
+            }
+
+            event.preventDefault();
+        }
+
+        // Tweet.
+        document.getElementById( 'tweet' ).onclick  = function( event ) {
+
+            var highlight = getHighlight();
+
+            if ( highlight.text !== '' && highlight.parent.nodeName === 'P' ) {
+                var tweetURL = 'https://twitter.com/intent/tweet?via=wdtuts&url=' + encodeURIComponent( window.location.href ) + '&text=' + encodeURIComponent( highlight.text );
+                openShareWindow( tweetURL, 600, 420 );
+            }
+
+            event.preventDefault();
+            
+        }
+
+    </script>
+</body>
+</html>
