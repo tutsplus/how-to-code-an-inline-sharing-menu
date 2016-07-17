@@ -81,7 +81,7 @@
             if ( selection.rangeCount > 0 ) {
                 object = {
                     parent : selection.anchorNode.parentNode,
-                    text   : selection.toString(),
+                    text   : selection.toString().trim(),
                     rect   : selection.getRangeAt(0).getBoundingClientRect()
                 };
             }

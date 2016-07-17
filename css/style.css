@@ -129,7 +129,7 @@ mark {
   display: flex;
   background-color: #000;
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 4px;
   z-index: 10;
   position: relative;
 }
