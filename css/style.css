@@ -148,3 +148,10 @@ mark {
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
+#help {
+  padding: 15px;
+  background-color: #ffdd00;
+  color: #000;
+  margin: 0;
+  text-align: center;
+}
