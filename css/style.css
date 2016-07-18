@@ -95,9 +95,11 @@ mark {
 }
 ::-moz-selection {
   background: #b4e0d3;
+  color: #000;
 }
 ::selection {
   background: #b4e0d3;
+  color: #000;
 }
 .tooltip {
   position: absolute;
