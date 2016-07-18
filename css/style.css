@@ -93,48 +93,58 @@ mark {
 .demo-content p:only-child {
   margin-bottom: 0;
 }
+::-moz-selection {
+  background: #b4e0d3;
+}
+::selection {
+  background: #b4e0d3;
+}
 .tooltip {
   position: absolute;
   opacity: 0;
-  -webkit-transform: translateY(10px);
-          transform: translateY(10px);
-  -webkit-transition: -webkit-transform 0.2s;
-  transition: -webkit-transform 0.2s;
-  transition: transform 0.2s;
-  transition: transform 0.2s, -webkit-transform 0.2s;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+  -webkit-transition: -webkit-transform 0.25s ease-in-out;
+  transition: -webkit-transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+  background-color: #212a34;
+  border-radius: 3px;
+}
+.tooltip svg {
+  fill: #a1acb4;
+  display: block;
 }
 .tooltip button {
-  background-color: #000;
   border-radius: 0;
   border: 0;
-  color: #fff;
   display: block;
-  padding: 10px 16px;
+  padding: 8px 6px;
   cursor: pointer;
   outline: 0;
   font-size: 14px;
   -webkit-transition: background-color 0.2s;
   transition: background-color 0.2s;
   margin: 0;
+  background-color: transparent;
 }
-.tooltip button:hover,
-.tooltip button:focus,
-.tooltip button:active {
-  background-color: #007bff;
+.tooltip button:hover .icon,
+.tooltip button:focus .icon,
+.tooltip button:active .icon {
+  fill: #fff;
 }
 .tooltip__buttons {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  background-color: #000;
-  overflow: hidden;
-  border-radius: 4px;
-  z-index: 10;
   position: relative;
+  z-index: 10;
+  overflow: hidden;
 }
 .tooltip__triangle {
-  background-color: #000;
+  background-color: #212a34;
   width: 18px;
   height: 18px;
   position: absolute;
@@ -147,6 +157,12 @@ mark {
   opacity: 1;
   -webkit-transform: translateY(0);
           transform: translateY(0);
+}
+#share {
+  padding-left: 12px;
+}
+#tweet {
+  padding-right: 12px;
 }
 #help {
   padding: 15px;
