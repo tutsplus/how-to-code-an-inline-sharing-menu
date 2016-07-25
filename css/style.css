@@ -101,9 +101,12 @@ mark {
   background: #b4e0d3;
   color: #000;
 }
-.tooltip {
+.sharing {
   position: absolute;
-  opacity: 0;
+  visibility: hidden;
+  top: 0;
+  left: 0;
+  z-index: 500;
   -webkit-transform: translateY(-5px);
           transform: translateY(-5px);
   -webkit-transition: -webkit-transform 0.25s ease-in-out;
@@ -114,11 +117,11 @@ mark {
   background-color: #212a34;
   border-radius: 3px;
 }
-.tooltip svg {
+.sharing svg {
   fill: #a1acb4;
   display: block;
 }
-.tooltip button {
+.sharing button {
   border-radius: 0;
   border: 0;
   display: block;
@@ -131,12 +134,12 @@ mark {
   margin: 0;
   background-color: transparent;
 }
-.tooltip button:hover .icon,
-.tooltip button:focus .icon,
-.tooltip button:active .icon {
+.sharing button:hover .icon,
+.sharing button:focus .icon,
+.sharing button:active .icon {
   fill: #fff;
 }
-.tooltip__buttons {
+.sharing__buttons {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -145,7 +148,7 @@ mark {
   z-index: 10;
   overflow: hidden;
 }
-.tooltip__triangle {
+.sharing__triangle {
   background-color: #212a34;
   width: 18px;
   height: 18px;
@@ -155,8 +158,8 @@ mark {
   -webkit-transform: translate3d(-50%, 100%, 0) rotate(45deg);
           transform: translate3d(-50%, 100%, 0) rotate(45deg);
 }
-.tooltip--shown {
-  opacity: 1;
+.sharing--shown {
+  visibility: visible;
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
